@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../Utils/app_colors.dart';
+
 // ignore: must_be_immutable
 class MyTextFormField extends StatelessWidget {
   TextEditingController? controller;
@@ -11,6 +13,7 @@ class MyTextFormField extends StatelessWidget {
   TextInputType? keyboardType;
   TextStyle? style;
   Widget? suffixIcon;
+  Widget? prefixIcon;
   bool? obscureText = false;
   MyTextFormField({
     Key? key,
@@ -21,6 +24,7 @@ class MyTextFormField extends StatelessWidget {
     this.keyboardType,
     this.style,
     this.suffixIcon,
+    this.prefixIcon,
     this.obscureText,
   }) : super(key: key);
 
@@ -29,21 +33,24 @@ class MyTextFormField extends StatelessWidget {
     return TextFormField(
         controller: controller,
         obscureText: obscureText ?? false,
-        style: style,
+        style: TextStyle(color: Colors.black),
         validator: validator,
         keyboardType: keyboardType,
         decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-              //borderSide: BorderSide(color: AppColors.grey),
-              borderRadius: BorderRadius.circular(10.r)),
-          suffixIcon: suffixIcon,
-          hintText: hintText,
-          hintStyle: hintStyle,
-          focusedBorder: OutlineInputBorder(
-              //borderSide: BorderSide(color: AppColors.yellow)),
-              //border: OutlineInputBorder(
-              //borderSide: BorderSide(color: AppColors.white))),
-              ),
-        ));
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.black),
+                borderRadius: BorderRadius.circular(10.w)),
+            suffixIcon: suffixIcon,
+            contentPadding:
+                EdgeInsets.symmetric(vertical: 17.h, horizontal: 15.w),
+            prefixIcon: prefixIcon,
+            hintText: hintText,
+            hintStyle: hintStyle,
+            errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.red),
+                borderRadius: BorderRadius.circular(10.w)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blueGrey),
+                borderRadius: BorderRadius.circular(10.w))));
   }
 }

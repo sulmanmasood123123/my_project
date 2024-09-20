@@ -2,7 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
+import 'Views/LoginScreen/Provider/login_provider.dart';
+import 'Views/RegisterScreen/Provider/register_provider.dart';
 import 'Views/SplashScreen/splashScreen.dart';
 import 'firebase_options.dart';
 
@@ -17,11 +20,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(720, 1650),
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => RegisterProvider()),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 836),
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: SplashScreen(),
+        ),
       ),
     );
   }
