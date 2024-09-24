@@ -69,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             children: [
               Center(
                   child: CustomText(
-                      text: "Welcome UserName",
+                      text: "Welcome to KGC",
                       color: AppColors.black,
                       size: 18.sp,
                       weight: FontWeight.bold)),

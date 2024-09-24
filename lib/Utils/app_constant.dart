@@ -1,6 +1,8 @@
 class AppConstants {
   static String signIn = "Sign In";
   static String signUp = "Sign Up";
+  static String setName = "";
+  static String getName = "";
   static String forgotPassword = "Forgot Password?";
   static String forgotPasswordTitle = "Forgot Password";
   static String registerSuccessfully = "Register Successfully";

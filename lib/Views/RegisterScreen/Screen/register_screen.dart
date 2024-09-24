@@ -6,10 +6,10 @@ import 'package:my_project/Utils/app_constant.dart';
 import 'package:my_project/Views/LoginScreen/Screen/loginScreen.dart';
 import 'package:my_project/Widgets/custom_button.dart';
 import 'package:my_project/Widgets/custom_text.dart';
-import 'package:my_project/Widgets/custom_textformfield.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Utils/app_colors.dart';
+import '../../../Widgets/custom_textformfield.dart';
 import '../Provider/register_provider.dart';
 
 class RegisterScreen extends StatefulWidget {
