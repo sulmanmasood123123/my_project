@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import 'Views/DashboardScreen/Provider/signOut_provider.dart';
+import 'Views/ForgetPassword/Provider/forgetPassword_provider.dart';
 import 'Views/LoginScreen/Provider/login_provider.dart';
 import 'Views/RegisterScreen/Provider/register_provider.dart';
 import 'Views/SplashScreen/splashScreen.dart';
@@ -24,6 +26,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => RegisterProvider()),
+        ChangeNotifierProvider(create: (_) => ForgotProvider()),
+        ChangeNotifierProvider(create: (_) => SignOutProvider()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 836),

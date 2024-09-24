@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:my_project/Utils/app_constant.dart';
+import 'package:my_project/Views/BottomNavigationScreen/bottomNavigation_Screen.dart';
+import 'package:my_project/Views/ForgetPassword/Screen/forgetPassword_screen.dart';
 import 'package:my_project/Views/RegisterScreen/Screen/register_screen.dart';
 import 'package:my_project/Widgets/custom_button.dart';
 import 'package:my_project/Widgets/custom_text.dart';
@@ -125,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (p0) {
                         if (p0!.isEmpty) {
                           return "Enter Password";
-                        } else if (p0.length < 7) {
+                        } else if (p0.length < 6) {
                           return 'Password should be greater than 6';
                         } else {
                           return null;
@@ -137,11 +139,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        CustomText(
-                            text: AppConstants.forgotPassword,
-                            color: Colors.blueGrey,
-                            size: 16.sp,
-                            weight: FontWeight.bold),
+                        InkWell(
+                          onTap: () {
+                            Get.to(ForgetScreen());
+                          },
+                          child: CustomText(
+                              text: AppConstants.forgotPassword,
+                              color: Colors.blueGrey,
+                              size: 16.sp,
+                              weight: FontWeight.bold),
+                        ),
                       ],
                     ),
                     SizedBox(height: 60.h),
@@ -149,6 +156,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         onTap: () async {
                           if (_formKey.currentState!.validate()) {
                             loginProvider.signIn();
+                            Get.showSnackbar(GetSnackBar(
+                              message: AppConstants.loginSuccessfully,
+                              duration: Duration(seconds: 2),
+                              backgroundColor: AppColors.green,
+                              snackPosition: SnackPosition.TOP,
+                              dismissDirection: DismissDirection.up,
+                            ));
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        BottomNavigationScreen()));
                           }
                           ;
                         },
