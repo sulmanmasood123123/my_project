@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../Utils/app_colors.dart';
 import '../../Utils/app_constant.dart';
 import '../../Widgets/custom_text.dart';
+import '../../Widgets/my_drawer.dart';
 import '../ChatScreen/Screen/chat_screen.dart';
 import '../DashboardScreen/Provider/signOut_provider.dart';
 import '../DashboardScreen/Screen/dashboardscreen.dart';
@@ -20,6 +21,7 @@ class BottomNavigationScreen extends StatefulWidget {
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int _selectedIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   static List<Widget> _pages = <Widget>[
     DashboardScreen(),
     ChatScreen(),
@@ -34,68 +36,77 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
-          centerTitle: true,
-          automaticallyImplyLeading: false,
-          title: Padding(
-            padding: EdgeInsets.only(left: 20.0).r,
-            child: Center(
-              child: CustomText(
-                  textAlign: TextAlign.left,
-                  text: "KGC",
-                  color: AppColors.white,
-                  weight: FontWeight.bold,
-                  size: 20.sp),
-            ),
+      key: _scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: AppColors.white),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer(); // Open the drawer
+          },
+        ),
+        iconTheme: IconThemeData(color: AppColors.white),
+        title: Padding(
+          padding: EdgeInsets.only(left: 20.0).r,
+          child: Center(
+            child: CustomText(
+                textAlign: TextAlign.left,
+                text: AppConstants.KGC,
+                color: AppColors.white,
+                weight: FontWeight.bold,
+                size: 20.sp),
           ),
-          actions: [
-            Consumer<SignOutProvider>(
-              builder: (context, signOutProvider, child) {
-                return InkWell(
-                    onTap: () {
-                      signOutProvider.signOut();
-                      Get.showSnackbar(GetSnackBar(
-                          message: AppConstants.logoutSuccessfully,
-                          duration: Duration(seconds: 2),
-                          backgroundColor: AppColors.green,
-                          snackPosition: SnackPosition.TOP,
-                          dismissDirection: DismissDirection.up));
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => LoginScreen()));
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 10.0).r,
-                      child: Icon(Icons.logout,
-                          color: AppColors.white, size: 20.sp),
-                    ));
-              },
-            )
+        ),
+        actions: [
+          Consumer<SignOutProvider>(
+            builder: (context, signOutProvider, child) {
+              return InkWell(
+                  onTap: () {
+                    signOutProvider.signOut();
+                    Get.showSnackbar(GetSnackBar(
+                        message: AppConstants.logoutSuccessfully,
+                        duration: Duration(seconds: 2),
+                        backgroundColor: AppColors.green,
+                        snackPosition: SnackPosition.TOP,
+                        dismissDirection: DismissDirection.up));
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 10.0).r,
+                    child:
+                        Icon(Icons.logout, color: AppColors.white, size: 20.sp),
+                  ));
+            },
+          )
+        ],
+      ),
+      drawer: MyDrawer(),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(vertical: 10), // Add padding
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
           ],
         ),
-        body: _pages[_selectedIndex],
-        bottomNavigationBar: Container(
-          padding: EdgeInsets.symmetric(vertical: 10), // Add padding
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.2),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment:
-                MainAxisAlignment.spaceAround, // Distribute items evenly
-            children: <Widget>[
-              buildNavItem(Icons.dashboard, 'Dashboard', 0),
-              buildNavItem(Icons.chat, 'Chat', 1),
-            ],
-          ),
-        ));
+        child: Row(
+          mainAxisAlignment:
+              MainAxisAlignment.spaceAround, // Distribute items evenly
+          children: <Widget>[
+            buildNavItem(Icons.dashboard, AppConstants.Dashboard, 0),
+            buildNavItem(Icons.chat, AppConstants.Chat, 1),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget buildNavItem(IconData icon, String label, int index) {

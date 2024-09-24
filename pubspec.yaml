@@ -47,8 +47,8 @@ dependencies:
   flutter_screenutil:
   flutter_chat_ui:
   fl_chart:
-
-
+  shared_preferences:
+  cloud_firestore:
 
 dev_dependencies:
   flutter_test:
