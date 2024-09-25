@@ -48,6 +48,7 @@ dependencies:
   flutter_chat_ui:
   fl_chart:
   shared_preferences:
+  firebase_messaging:
 
 dev_dependencies:
   flutter_test:

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_project/Utils/app_constant.dart';
 import 'package:my_project/Views/LoginScreen/Screen/loginScreen.dart';
-
 import '../../../Utils/app_colors.dart';
 
 class ForgotProvider with ChangeNotifier {

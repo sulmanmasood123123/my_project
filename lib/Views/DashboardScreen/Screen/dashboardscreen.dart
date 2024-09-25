@@ -69,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             children: [
               Center(
                   child: CustomText(
-                      text: "Welcome to KGC",
+                      text: AppConstants.WelcomeToKGC,
                       color: AppColors.black,
                       size: 18.sp,
                       weight: FontWeight.bold)),
@@ -210,11 +210,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 onTap: () {
                   if (!_isButtonDisabled) {
                     _onSubmit();
-                    print("Submitted");
+                    print(AppConstants.Submitted);
                   }
                 },
                 child: CustomButton(
-                    text: _isButtonDisabled ? "Submitted" : "Submit"),
+                    text: _isButtonDisabled
+                        ? AppConstants.Submitted
+                        : AppConstants.Submit),
               ),
             ],
           ),
@@ -289,17 +291,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
       dotData: FlDotData(show: true),
       belowBarData: BarAreaData(show: false),
       spots: const [
-        FlSpot(0, 30), // January
-        FlSpot(1, 60), // February
-        FlSpot(2, 50), // March
-        FlSpot(3, 80), // April
-        FlSpot(4, 90), // May
-        FlSpot(5, 70), // June
-        FlSpot(6, 60), // July
-        FlSpot(7, 40), // August
-        FlSpot(8, 30), // September
-        FlSpot(9, 50), // October
-        FlSpot(10, 80), // November
+        FlSpot(0, 30),
+        FlSpot(1, 60),
+        FlSpot(2, 50),
+        FlSpot(3, 80),
+        FlSpot(4, 90),
+        FlSpot(5, 70),
+        FlSpot(6, 60),
+        FlSpot(7, 40),
+        FlSpot(8, 30),
+        FlSpot(9, 50),
+        FlSpot(10, 80),
       ],
     );
   }

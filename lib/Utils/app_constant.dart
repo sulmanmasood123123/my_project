@@ -14,6 +14,9 @@ class AppConstants {
   static String checkEmail = "Check Email";
   static String failedToSend = "Failed to Send";
   static String KGC = "KGC";
+  static String Submit = "Submit";
+  static String Submitted = "Submitted";
+  static String WelcomeToKGC = "Welcome to KGC";
   static String fullGraph = "Full Graph";
   static String Medicine = "Medicine";
   static String Diet = "Diet";
