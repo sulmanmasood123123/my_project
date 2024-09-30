@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: SplashScreen(),
           navigatorKey: navigatorKey,
-          routes: {'Chat_screen': (context) => const ChatScreen()},
+          routes: {'Chat_screen': (context) => ChatScreen()},
         ),
       ),
     );
